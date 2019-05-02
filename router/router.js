@@ -13,8 +13,8 @@ const db = knex(knexConfig);
 
 router.get('/', (req, res) => {
 	db('dishes')
-		.then((cohort) => {
-			res.status(200).json(cohort);
+		.then((dish) => {
+			res.status(200).json(dish);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -39,22 +39,22 @@ router.get('/:id', (req, res) => {
 		});
 });
 
-router.get('/:id/recipe', (req, res) => {
-	db('recipes')
-		.where({ id: req.params.id })
-		.first()
-		.then((recipe) => {
-			if (recipe) {
-				res.status(200).json(recipe);
-			} else {
-				res.status(404).json({ message: 'Recipe not found.' });
-			}
-		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
+// router.get('/:id/recipe', (req, res) => {
+// 	db('recipes')
+// 		.where({ id: req.params.id })
+// 		.first()
+// 		.then((recipe) => {
+// 			if (recipe) {
+// 				res.status(200).json(recipe);
+// 			} else {
+// 				res.status(404).json({ message: 'Recipe not found.' });
+// 			}
+// 		})
+// 		.catch((err) => {
+// 			console.log(err);
+// 			res.status(500).json(err);
+// 		});
+// });
 
 // POST
 router.post('/', (req, res) => {
